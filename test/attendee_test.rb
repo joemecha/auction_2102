@@ -1,6 +1,9 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/attendee'
+require './lib/auction'
+require './lib/item'
+
 
 class AttendeeTest < Minitest::Test
   def setup
