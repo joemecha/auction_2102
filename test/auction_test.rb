@@ -70,7 +70,36 @@ class AuctionTest < Minitest::Test
     @item1.add_bid(@attendee1, 22)
     @item4.add_bid(@attendee3, 50)
     @item3.add_bid(@attendee2, 15)
-    
+
     assert_equal 87, @auction.potential_revenue
+  end
+
+  def test_bidders
+    @auction.add_item(@item1)
+    @auction.add_item(@item2)
+    @auction.add_item(@item3)
+    @auction.add_item(@item4)
+    @auction.add_item(@item5)
+    @item1.add_bid(@attendee2, 20)
+    @item1.add_bid(@attendee1, 22)
+    @item4.add_bid(@attendee3, 50)
+    @item3.add_bid(@attendee2, 15)
+
+    assert_equal ["Bob", "Megan", "Mike"], @auction.bidders
+  end
+
+  def test_bidder_info
+    @auction.add_item(@item1)
+    @auction.add_item(@item2)
+    @auction.add_item(@item3)
+    @auction.add_item(@item4)
+    @auction.add_item(@item5)
+    @item1.add_bid(@attendee2, 20)
+    @item1.add_bid(@attendee1, 22)
+    @item4.add_bid(@attendee3, 50)
+    @item3.add_bid(@attendee2, 15)
+
+    assert_equal 1, @auction.bidder_info[@attendee1][:items].count
+    assert_equal 2, @auction.bidder_info[@attendee2][:items].count
   end
 end
