@@ -1,9 +1,12 @@
 class Auction
   attr_reader :items,
-              :item_names
+              :item_names,
+              :date
 
   def initialize
     @items = []
+    @date = Time.now.strftime("%d/%m/%Y")
+
   end
 
   def add_item(item)

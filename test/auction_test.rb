@@ -3,6 +3,8 @@ require 'minitest/pride'
 require './lib/auction'
 require './lib/attendee'
 require './lib/item'
+require 'date'
+require 'mocha/minitest'
 
 class AuctionTest < Minitest::Test
   def setup
@@ -101,5 +103,11 @@ class AuctionTest < Minitest::Test
 
     assert_equal 1, @auction.bidder_info[@attendee1][:items].count
     assert_equal 2, @auction.bidder_info[@attendee2][:items].count
+  end
+
+  def test_date
+    require "pry"; binding.pry
+    @auction.stubs(:date).returns("24/02/2020")
+    assert_equal "24/02/2020", @auction.date
   end
 end
